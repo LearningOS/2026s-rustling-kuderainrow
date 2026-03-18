@@ -3,7 +3,7 @@
 // Execute `rustlings hint macros2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE 宏的定义必须出现在调用之前
+//宏的定义必须出现在调用之前
 
 fn main() {
     my_macro!();

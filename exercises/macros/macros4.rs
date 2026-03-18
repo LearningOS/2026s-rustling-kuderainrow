@@ -3,7 +3,7 @@
 // Execute `rustlings hint macros4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE 第12行缺少；，宏定义内有多个{}时，要用；隔开
+//第12行缺少；，宏定义内有多个{}时，要用；隔开
 
 #[rustfmt::skip]
 macro_rules! my_macro {
