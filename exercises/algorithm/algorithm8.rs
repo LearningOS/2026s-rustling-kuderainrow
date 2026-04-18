@@ -2,7 +2,7 @@
 	queue
 	This question requires you to use queues to implement the functionality of the stac
 */
-// I AM NOT DONE
+//
 
 #[derive(Debug)]
 pub struct Queue<T> {
@@ -20,7 +20,7 @@ impl<T> Queue<T> {
         self.elements.push(value)
     }
 
-    pub fn dequeue(&mut self) -> Result<T, &str> {
+    pub fn dequeue(&mut self) -> Result<T, &'static str> {
         if !self.elements.is_empty() {
             Ok(self.elements.remove(0usize))
         } else {
@@ -28,7 +28,7 @@ impl<T> Queue<T> {
         }
     }
 
-    pub fn peek(&self) -> Result<&T, &str> {
+    pub fn peek(&self) -> Result<&T, &'static str> {
         match self.elements.first() {
             Some(value) => Ok(value),
             None => Err("Queue is empty"),
@@ -67,15 +67,28 @@ impl<T> myStack<T> {
         }
     }
     pub fn push(&mut self, elem: T) {
-        //TODO
+        self.q1.enqueue(elem);
     }
-    pub fn pop(&mut self) -> Result<T, &str> {
-        //TODO
-		Err("Stack is empty")
+    pub fn pop(&mut self) -> Result<T, &'static str> {
+        if self.q1.is_empty() {
+		    return Err("Stack is empty");
+        }
+
+        while self.q1.size() > 1{
+            if let Ok(value) = self.q1.dequeue() {
+                self.q2.enqueue(value);
+            }
+        }
+
+        let res = self.q1.dequeue();
+
+        std::mem::swap(&mut self.q1, &mut self.q2);
+
+        res
+
     }
     pub fn is_empty(&self) -> bool {
-		//TODO
-        true
+		self.q1.is_empty()
     }
 }
 
